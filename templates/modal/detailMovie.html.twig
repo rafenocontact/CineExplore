@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="informationTitle">{{ movie.title }}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-id="{{ movie.id }}"></button>
+</div>
+<div class="modal-body p-4">
+    <div class="row col-xs-2">
+        <div class="row g-0 mb-4 frame-trailer-detail">
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ movie.urlVideo }}?rel=0" title="YouTube video" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="row d-inline">
+            <span class="text-secondary">Film : </span><b class="card-title d-inline">{{ movie.title }} - Trailer</b>
+            {% include 'include/star.twig' with {'movie': movie} %}
+            <span class="text-light bg-dark">{{ (movie.voteAverage / 2)|number_format(2) }}</span>
+            <span class="d-inline fs-6"> pour <b>{{ movie.voteCount }}</b> utilisateurs</span>
+        </div>
+        <p class="card-text">
+            <small class="text-muted"><small class="text-muted">{{ movie.releaseDate|date("Y") }} - {{ movie.productionName }}</small></small>
+        </p>
+        <p class="card-text mt-2">{{ movie.description }}</p>
+    </div>
+</div>

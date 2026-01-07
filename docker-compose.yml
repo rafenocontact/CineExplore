@@ -1,0 +1,27 @@
+services:
+    php:
+        build:
+            context: .
+            dockerfile: docker/images/php8/Dockerfile
+        volumes:
+            - ./:/var/www:rw,cached
+            - node_modules:/var/www/node_modules
+            - php_vendor:/var/www/vendor
+            - php_cache:/var/www/var/cache
+
+    nginx:
+        build: docker/images/nginx
+        ports:
+            - 8009:80
+        depends_on:
+            - php
+        links:
+            - php
+        volumes:
+            - ./public:/var/www/public
+            - ./docker/var/logs/nginx/:/var/log/nginx
+
+volumes:
+    node_modules:
+    php_vendor:
+    php_cache:

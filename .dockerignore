@@ -1,0 +1,10 @@
+# Ignore dependencies
+vendor
+node_modules
+
+# Ignore git
+.git
+.gitignore
+
+# Ignore environnement
+.env

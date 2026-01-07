@@ -1,0 +1,42 @@
+<h4 class="mb-3">
+    {% if(resultNumber is defined) %}
+        {{ resultNumber }} movie(s) found for {{ movieToFind }}
+    {% else %}
+        List of movies
+    {% endif %}
+</h4>
+{% for movie in listMovies %}
+    <div class="card mb-3" style="max-width: 800px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img class="img-fluid" src="{{ movie.thumbnail }}"
+                     alt="Card image cap">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }}</h5>  <p class="card-text">({{ movie.voteCount }} votes)</p>
+                    {% include 'include/star.twig' with {'movie': movie} %}
+                    <p class="card-text"><small class="text-muted">{{ movie.releaseDate|date("Y") }}-{{ movie.productionName }}</small></p>
+                    <p class="card-text">{{ movie.description|length > 50 ? movie.description|slice(0, 200) ~ '...' : movie.description  }}</p>
+                    <button type="button" class="btn btn-primary detailMovie" data-bs-toggle="modal" data-bs-target="#modal-movie-{{ movie.id }}" data-id="{{ movie.id }}">
+                        Lire le detail
+                    </button>
+                </div>
+            </div>
+            {# Modal for this movie shown when you click on the button #}
+            <div class="modal fade modal-movie" id="modal-movie-{{ movie.id }}" tabindex="-1" aria-labelledby="informationTitle" aria-hidden="true" data-id="{{ movie.id }}">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content content-{{ movie.id }}">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{# Pagination links with methode KnpPaginator #}
+    <div class="d-flex justify-content-center mt-4 pagination">
+        {{ knp_pagination_render(listMovies) }}
+    </div>
+{# end KnpPaginator #}

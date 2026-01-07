@@ -1,0 +1,36 @@
+.frame-trailer{
+  width: 90%;
+  position: relative;
+  left:3%;
+}
+
+.frame-trailer-detail{
+
+}
+
+.miniature-trailer{
+  margin-top: -377px;
+  margin-left: 30px;
+  z-index: 9999999;
+  pointer-events: none;
+}
+
+.bande-annonce-text{
+  color:white;
+  padding-top: 95px;
+}
+
+.titre-bande-annonce{
+  position: absolute;
+  margin-top: 45px;
+}
+.rating .bi {
+  font-size: 15px;
+  color: #0087D7;
+}
+
+@media screen and (min-width: 676px) {
+  .modal-dialog {
+    max-width: 700px; /* New width for default modal */
+  }
+}

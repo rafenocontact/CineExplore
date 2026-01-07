@@ -1,0 +1,7 @@
+<div class="rating d-inline">
+    <i class="bi bi-star{% if movie.voteAverage >= 2 %}-fill{% elseif movie.voteAverage > 0 and movie.voteAverage <2 %}-half{% endif %}"></i>
+    <i class="bi bi-star{% if movie.voteAverage >= 4 %}-fill{% elseif movie.voteAverage > 2 and movie.voteAverage <4 %}-half{% endif %}"></i>
+    <i class="bi bi-star{% if movie.voteAverage >= 6 %}-fill{% elseif movie.voteAverage > 4 and movie.voteAverage <6 %}-half{% endif %}"></i>
+    <i class="bi bi-star{% if movie.voteAverage >= 8 %}-fill{% elseif movie.voteAverage > 6 and movie.voteAverage <8 %}-half{% endif %}"></i>
+    <i class="bi bi-star{% if movie.voteAverage == 10 %}-fill{% elseif movie.voteAverage > 8 and movie.voteAverage <10 %}-half{% endif %}"></i>
+</div>
