@@ -27,8 +27,12 @@ services:
             dockerfile: docker/images/jenkins/Dockerfile
         ports:
             - 8080:8080
+        volumes:
+            - jenkins_home:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
     node_modules:
     php_vendor:
     php_cache:
+    jenkins_home:
