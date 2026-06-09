@@ -24,7 +24,7 @@ services:
         arguments:
             $urlApiTmdb: '%env(URL_API_TMDB)%'
             $tmdbLanguage: '%env(TMDB_LANGUAGE)%'
-            $apiKeyTmdb: '%env(API_KEY_TMBD)%'
+            $apiKeyTmdb: '%env(API_KEY_TMDB)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

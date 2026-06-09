@@ -29,15 +29,6 @@ $ docker-compose exec php npm install
 $ docker-compose exec php npm run dev
 ```
 
-**If you're not using docker**
-
-```
-$ composer install
-$ npm install
-$ npm run dev
-$ php -S localhost:8009 -t public
-```
-
 **Link to open application:** http://localhost:8009
 
 Test

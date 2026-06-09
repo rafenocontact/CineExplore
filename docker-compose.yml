@@ -21,6 +21,13 @@ services:
             - ./public:/var/www/public
             - ./docker/var/logs/nginx/:/var/log/nginx
 
+    jenkins:
+        build:
+            context: .
+            dockerfile: docker/images/jenkins/Dockerfile
+        ports:
+            - 8080:8080
+
 volumes:
     node_modules:
     php_vendor:
