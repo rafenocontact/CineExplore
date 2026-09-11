@@ -14,19 +14,19 @@ $ git clone https://github.com/rafenocontact/CineExplore.git
 $ cd CineExplore
 ```
 
-**Run docker**
+**Run docker and build images**
 
 ```
-$ docker-compose up -d
+$ docker compose up -d --build
 ```
 
 Install dependencies
 ----------------------------
 
 ```
-$ docker-compose exec php composer install
-$ docker-compose exec php npm install
-$ docker-compose exec php npm run dev
+$ docker compose exec php composer install
+$ docker compose exec php npm install
+$ docker compose exec php npm run dev
 ```
 
 **Link to open application:** http://localhost:8009
@@ -36,5 +36,5 @@ Test
 **Launch unit test**
 
 ```
-$ docker-compose exec php ./vendor/bin/phpunit
+$ docker compose exec php ./vendor/bin/phpunit
 ```
