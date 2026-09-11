@@ -26,6 +26,9 @@ RUN apt-get update && apt-get install -y \
     cron \
     zlib1g-dev
 
+# Allow Git to trust the project directory inside the container
+RUN git config --global --add safe.directory /var/www
+
 #install some base extensions
 RUN apt-get install -y \
         libzip-dev \

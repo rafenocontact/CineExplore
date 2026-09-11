@@ -3,11 +3,20 @@
 namespace App\Service;
 
 
+use App\Entity\Movie;
+
 interface MovieInterface
 {
-    public function getAllGenreMovie();
+    /**
+	 * @return Movie[]
+	 */
+	public function getAllGenreMovie(): array;
 
-    public function getMoviesByGenre(int $idGenre);
+	/**
+	 * @param int $idGenre
+	 * @return Movie[]
+	 */
+	public function getMoviesByGenre(int $idGenre): array;
 
-    public function getMovieDetails(int $idMovie);
+    public function getMovieDetails(int $idMovie): Movie;
 }

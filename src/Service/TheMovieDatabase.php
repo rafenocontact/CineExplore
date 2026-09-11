@@ -51,7 +51,7 @@ class TheMovieDatabase implements MovieInterface
     }
 
     /**
-     * @return array
+     * @return GenreMovie[]
      */
     public function getAllGenreMovie(): array
     {
@@ -132,13 +132,14 @@ class TheMovieDatabase implements MovieInterface
      * @param int $idMovie
      * @return Movie
      */
-    public function getMovieDetails(int $idMovie):Movie
+    public function getMovieDetails(int $idMovie): Movie
     {
         //language argument
         $criteria['language'] = $this->langageCode;
 
         // Get movie detail to API TMDB
         $movieFromApi = $this->requestToApi(str_replace('[id_movie]', $idMovie, self::URL_MOVIE_DETAIL), $criteria);
+		dd($movieFromApi);
         $detailVideo = $this->getVideoMovieDetails($idMovie);
 
         return MovieUtils::movieMapper($movieFromApi, $detailVideo);

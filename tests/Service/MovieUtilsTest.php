@@ -2,7 +2,9 @@
 
 namespace App\Tests\Service;
 
+use App\Entity\Movie;
 use App\Service\MovieUtils;
+use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class MovieUtilsTest extends TestCase
@@ -83,4 +85,25 @@ class MovieUtilsTest extends TestCase
         $this->assertNotEquals('https://www.youtube.com/embed/R2n_TZgmmPo', $url);
         $this->assertEmpty(MovieUtils::getUrlTrailerMovie([]));
     }
+
+	public function testSortMoviesByVoteAverage(): void
+	{
+		$movie1 = $this->createMock(Movie::class);
+		$movie1->method('getVoteAverage')->willReturn(6.5);
+
+		$movie2 = $this->createMock(Movie::class);
+		$movie2->method('getVoteAverage')->willReturn(8.2);
+
+		$movie3 = $this->createMock(Movie::class);
+		$movie3->method('getVoteAverage')->willReturn(7.1);
+
+		$movies = new ArrayCollection([$movie1, $movie2, $movie3]);
+
+		$result = MovieUtils::sortMoviesByVoteAverage($movies);
+
+		$this->assertSame(
+			[$movie2, $movie3, $movie1],
+			$result
+		);
+	}
 }

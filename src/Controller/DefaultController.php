@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
 use App\Service\MovieUtils;
 use App\Service\TheMovieDatabase;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,7 +78,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route(path: '/detailMovie/{idMovie}', name: 'detailMovie', methods: ['GET'])]
-    public function getMovieDetails(int $idMovie)
+    public function getMovieDetails(int $idMovie): Response
     {
         $movie = $this->theMovieDatabase->getMovieDetails($idMovie);
         return $this->render('modal/detailMovie.html.twig', [
@@ -97,7 +99,14 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    private function paginatedListMovies(Request $request, PaginatorInterface $paginator, $listMovies, $limit)
+	/**
+	 * @param Request $request
+	 * @param PaginatorInterface $paginator
+	 * @param Movie[] $listMovies
+	 * @param int $limit
+	 * @return PaginationInterface<Movie>
+	 */
+	private function paginatedListMovies(Request $request, PaginatorInterface $paginator, array $listMovies, int $limit): PaginationInterface
     {
         //Opter avec la methode de pagination KnpPaginator
         return $paginator->paginate(

@@ -18,11 +18,11 @@ class MovieUtils
     }
 
     /**
-     * @param array $movieFromApi
-     * @param array $detailVideo
+     * @param array<string, mixed> $movieFromApi
+     * @param array<string, mixed> $detailVideo
      * @return Movie
      */
-    public static function movieMapper(array $movieFromApi, array $detailVideo):Movie
+    public static function movieMapper(array $movieFromApi, array $detailVideo): Movie
     {
         // id of movie
         $id = $movieFromApi['id'] ?? 0;
@@ -66,13 +66,15 @@ class MovieUtils
     }
 
     /**
-     * @param ArrayCollection $moviesFromApi
-     * @return array
+     * @param ArrayCollection<int, Movie> $moviesFromApi
+     * @return Movie[]
      */
     public static function sortMoviesByVoteAverage(ArrayCollection $moviesFromApi): array
     {
         // Sort collection by vote average of this movie
+		/** @var \ArrayIterator<int, Movie> $iterator */
         $iterator = $moviesFromApi->getIterator();
+
         $iterator->uasort(function ($first, $second) {
                 return $second->getVoteAverage() <=> $first->getVoteAverage();
             }
@@ -82,7 +84,7 @@ class MovieUtils
     }
 
     /**
-     * @param array $listMovies
+     * @param Movie[] $listMovies
      * @return Movie
      */
     public static function getTopMovie(array $listMovies): Movie
@@ -91,7 +93,7 @@ class MovieUtils
     }
 
     /**
-     * @param array|null $detailMovieDetail
+     * @param array<string, mixed>|null $detailMovieDetail
      */
     public static function getUrlTrailerMovie(?array $detailMovieDetail):string
     {
